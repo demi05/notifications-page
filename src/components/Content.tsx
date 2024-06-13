@@ -44,7 +44,7 @@ const Content = () => {
   return (
     <Box minHeight={"70vh"}>
       {notificationObj.map((notification, index) => (
-        <Flex id={`notification-${index}`} key={index} mb={"1em"} padding={"0.8em"} gap={"2em"} bgColor={"var(--Very-light-grayish-blue)"} borderRadius={"0.5rem"} cursor={"pointer"} boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px"}  onClick={() => handleRead(index)}>
+        <Flex className={`notification-${index}notification`} key={index} mb={"1em"} padding={"0.8em"} gap={"2em"} bgColor={"var(--Very-light-grayish-blue)"} borderRadius={"0.5rem"} cursor={"pointer"} boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px"}  onClick={() => handleRead(index)}>
             <Avatar src={notification.img}/>
           <Box>
             <Flex gap={"0.3em"} mb={"0.15em"} alignItems={"center"}>
@@ -54,9 +54,9 @@ const Content = () => {
               <Text className={`read-${index} read`} bgColor={"var(--Red)"} color={"var(--Red)"} borderRadius={"50%"} height={"3px"} padding={"0.3em"} textAlign={"center"}></Text>
             </Flex>
             <Text mb={"0.15em"}>{notification.time}</Text>
-            <Box sx={messageStyle}>{notification.message}</Box>
+            {notification.message && <Box sx={messageStyle}>{notification.message}</Box>}
           </Box>
-          {/* <Avatar src={notification.imgOpt} /> */}
+          {notification.imgOpt && <Avatar ml={"auto"} src={notification.imgOpt} />}
         </Flex>
       ))}
     </Box>
