@@ -1,8 +1,6 @@
-import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import { useContext, useEffect } from "react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { useContext } from "react";
 import { useContextValues } from "./context/GlobalState";
-// import handleRead from "./HandleRead"
-// import { color } from "framer-motion";
 
 const Header = () => {
   const textStyle = {
@@ -15,26 +13,28 @@ const Header = () => {
     }
   }
 
-  let {activeNotification,handleRead, handleChange} = useContext(useContextValues) 
+  let {activeNotification, handleChange} = useContext(useContextValues) 
 
 
   return (
     <header>
       <Box>
         <Flex my={"2rem"} justify={"space-between"} alignItems={"center"}>
-          <Flex justify={"space-between"} w={"25%"} alignItems={"center"}>
-            <Heading>Notifications</Heading>
+          <Flex justifyContent={"space-between"} w={["30%", "30%", "25%", "25%"]} alignItems={"center"}>
+            <Heading fontSize={["1.35rem", "1.5rem", "2rem", "2rem"]}>Notifications</Heading>
             <Heading id="active-notification"
               as={"h5"}
               bg={"var(--Blue)"}
               color={"var(--White)"}
               padding={"0.1em 0.5em"}
               borderRadius={"0.5rem"}
+              textAlign={"center"}
+              w={["40%", "30%", "40%", "40%"]}
             >
               {activeNotification}
             </Heading>
           </Flex>
-          <Text sx={textStyle} onClick={handleChange}
+          <Text sx={textStyle} onClick={handleChange} fontSize={["1.35rem", "1.5rem", "2rem", "2rem"]}
           >
             Mark all as read
           </Text>

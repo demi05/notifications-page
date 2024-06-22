@@ -30,22 +30,19 @@ export const GlobalProvider = ({children}: GlobalContextProviderProps) => {
   const notificationLength = notificationObj.length 
   let [activeNotification, setActiveNotification] = useState(7)
 
-    const handleRead  = (index: number) => {
-      const read: HTMLElement | null = document.querySelector(`.read-${index}`);
-      const notifications: HTMLElement | null = document.querySelector(
-        `.notification-${index}`
-      );
-      if (read) {
-        read.style.display = "none";
-        setActiveNotification((prev) => prev - 1)
-        if(activeNotification === 0){
-          setActiveNotification(0)
-        }
-        if (notifications) {
-          notifications.style.backgroundColor = "hsl(0, 0%, 100%)";
-        }
+  const handleRead = (index: number) => {
+    const read: HTMLElement | null = document.querySelector(`.read-${index}`);
+    const notification: HTMLElement | null = document.querySelector(`.notification-${index}`);
+    
+    if (read) {
+      read.style.display = 'none';
+      setActiveNotification((prev) => Math.max(prev - 1, 0));  
+
+      if (notification) {
+        notification.style.backgroundColor = '#fff';
       }
-    };
+    }
+  };
 
     const handleChange = () => {
       const readElements: NodeListOf<HTMLElement> = document.querySelectorAll(`.read`);
@@ -57,7 +54,7 @@ export const GlobalProvider = ({children}: GlobalContextProviderProps) => {
         read.style.display = "none";
       }) 
       notifications.forEach((notification) => {
-        notification.style.backgroundColor = "hsl(0, 0%, 100%)"
+        notification.style.backgroundColor = "#fff"
       })
       setActiveNotification(0)
     }
